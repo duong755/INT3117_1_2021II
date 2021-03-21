@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{vietnam}
+\usepackage{minted}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\title{Kiểm thử dòng điều khiển $-$ 2021II INT3117 1}
+\author{Ngô Quang Dương/17020191}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Chương trình đăng nhập}
+
+\href{https://github.com/duong755/INT3117_1_2021II}{GitHub Repo}
+
+\begin{minted}[linenos,frame=single,framesep=10pt,breaklines]{js}
+...
+signInForm.addEventListener('submit', function (submitEvent) {
+  submitEvent.preventDefault();
+  var emailInput = document.querySelector('.text-field.email input');
+  var emailErrorMessageContainer = document.querySelector('.text-field.email .error-message');
+  var passwordInput = document.querySelector('.text-field.password input');
+  var passwordErrorMessageContainer = document.querySelector('.text-field.password .error-message');
+
+  var email = emailInput.value;
+  var password = passwordInput.value;
+  var emailError = '';
+  var passwordError = '';
+
+  if (email.trim() === '') {
+    emailError = 'Không được để trống email';
+  } else if (!EMAIL_REGEX.test(email)) {
+    emailError = 'Email không hợp lệ';
+  } else if (email.trim().length > 320) {
+    emailError = 'Email không được dài quá 320 kí tự';
+  } else {
+    emailError = '';
+  }
+
+  if (password.trim() === '') {
+    passwordError = 'Không được để trống mật khẩu';
+  } else {
+    passwordError = '';
+  }
+
+  emailErrorMessageContainer.innerHTML = emailError;
+  passwordErrorMessageContainer.innerHTML = passwordError;
+  if (emailError === '' && passwordError === '') {
+    this.submit();
+  }
+});
+\end{minted}
+
+\section{Đồ thị phủ cấp 2}
+
+\begin{tikzpicture}[
+		level distance=1cm,
+		sibling distance=4em,
+    level 10/.style={level distance=1cm},
+    level 11/.style={level distance=1.5cm},
+    level 12/.style={level distance=1.5cm},
+    level 14/.style={level distance=1cm},
+    level 15/.style={level distance=1.5cm},
+    level 16/.style={level distance=1cm},
+    level 19/.style={level distance=1.1cm},
+    level 20/.style={level distance=1.1cm}
+	]
+  \tikzset{>=latex}
+  \tikzset{edge from parent/.style={draw,-latex}}
+  \tikzset{step node/.style = {
+		shape=circle,
+    rounded corners,
+    draw,
+    align=center,
+    top color=white,
+    bottom color=blue!20
+  }}
+  \tikzset{entry node/.style={
+    shape=circle,
+    fill=black
+  }}
+  \tikzset{terminal node/.style={
+    shape=circle,
+    fill=black,
+    draw=black,
+    double,
+    line width=0.5mm
+  }}
+  \node [entry node, line width=1mm,double] {0}
+  child {
+    node [label={[label distance=1cm]east:Dòng 3},step node] {1}
+      child {
+        node [label={[label distance=1cm]east:Dòng 4}, step node] {2}
+        child {
+          node [label={[label distance=1cm]east:Dòng 5}, step node] {3}
+          child {
+            node [label={[label distance=1cm]east:Dòng 6}, step node] {4}
+            child {
+              node [label={[label distance=1cm]east:Dòng 7}, step node] {5}
+              child {
+                node [label={[label distance=1cm]east:Dòng 9}, step node] {6}
+                child {
+                  node [label={[label distance=1cm]east:Dòng 10}, step node] {7}
+                  child {
+                    node [label={[label distance=1cm]east:Dòng 11}, step node] {8}
+                    child {
+                      node [label={[label distance=1cm]east:Dòng 12}, step node] {9}
+                      child {
+                        node [label={[label distance=1cm]east:Dòng 14}, step node] {10}
+                        child {
+                          node [label={[label distance=0.05cm]west:Dòng 15}, step node] (line15) {11} edge from parent node[left] {true}
+                        }
+                        child {
+                          node [label={[label distance=1cm]east:Dòng 16}, step node] {12}
+                          child {
+                            node [label={[label distance=0.05cm]west:Dòng 17}, step node] (line17) {13} edge from parent node[left] {true}
+                          }
+                          child {
+                            node [label={[label distance=1cm]east:Dòng 18}, step node] {14}
+                            child {
+                              node [label={[label distance=0.05cm]west:Dòng 19}, step node] (line19) {15} edge from parent node[left] {true}
+                            }
+                            child {
+                              node [label={[label distance=1cm]east:Dòng 21}, step node] {16}
+                              child {
+                                node [label={[label distance=1cm]east:Dòng 24}, step node] {17}
+                                child {
+                                  node [label={[label distance=0.05cm]west:Dòng 25}, step node] (line25) {18} edge from parent node[left] {true}
+                                }
+                                child {
+                                  node [label={[label distance=1cm]east:Dòng 27}, step node] {19}
+                                  child {
+                                    node [label={[label distance=1cm]east:Dòng 30}, step node] {20}
+                                    child {
+                                      node [label={[label distance=1cm]east:Dòng 31}, step node] {21}
+                                      child {
+                                        node [label={[label distance=1cm]east:Dòng 32}, step node] (line32) {22}
+                                        child {
+                                          node [label={[label distance=1cm]east:Dòng 33}, step node] {23}
+                                          child {
+                                            node [terminal node] (terminal) {24}
+                                          }
+                                          edge from parent node[left] {true}
+                                        }
+                                      }
+                                    }
+                                  }
+                                  edge from parent node[right] {false}
+                                }
+                              }
+                              edge from parent node[right] {false}
+                            }
+                            edge from parent node[right] {false}
+                          }
+                          edge from parent node[right] {false}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+		};
+    \draw[->] (line15) to[out=-90,in=135] (terminal);
+    \draw[->] (line17) to[out=-90,in=135] (terminal);
+    \draw[->] (line19) to[out=-90,in=135] (terminal);
+    \draw[->] (line25) to[out=-90,in=135] (terminal);
+    \path[->] (line32) edge[bend left=90] node {false} (terminal);
+\end{tikzpicture}
+
+\end{document}
