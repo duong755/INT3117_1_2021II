@@ -62,10 +62,10 @@ signInForm.addEventListener('submit', function (submitEvent) {
 		level distance=1cm,
 		sibling distance=4em,
     level 10/.style={level distance=1cm},
-    level 11/.style={level distance=1.5cm},
-    level 12/.style={level distance=1.5cm},
+    level 11/.style={level distance=1.2cm},
+    level 12/.style={level distance=1.2cm},
     level 14/.style={level distance=1cm},
-    level 15/.style={level distance=1.5cm},
+    level 15/.style={level distance=1.2cm},
     level 16/.style={level distance=1cm},
     level 19/.style={level distance=1.1cm},
     level 20/.style={level distance=1.1cm}
@@ -135,7 +135,7 @@ signInForm.addEventListener('submit', function (submitEvent) {
                                 child {
                                   node [label={[label distance=1cm]east:Dòng 27}, step node] {19}
                                   child {
-                                    node [label={[label distance=1cm]east:Dòng 30}, step node] {20}
+                                    node [label={[label distance=1cm]east:Dòng 30}, step node] (line30) {20}
                                     child {
                                       node [label={[label distance=1cm]east:Dòng 31}, step node] {21}
                                       child {
@@ -169,10 +169,10 @@ signInForm.addEventListener('submit', function (submitEvent) {
         }
       }
 		};
-    \draw[->] (line15) to[out=-90,in=135] (terminal);
-    \draw[->] (line17) to[out=-90,in=135] (terminal);
-    \draw[->] (line19) to[out=-90,in=135] (terminal);
-    \draw[->] (line25) to[out=-90,in=135] (terminal);
+    \draw[->] (line15) to[out=-90,in=180] (line30);
+    \draw[->] (line17) to[out=-90,in=180] (line30);
+    \draw[->] (line19) to[out=-90,in=180] (line30);
+    \draw[->] (line25) to[out=-70,in=180] (line30);
     \path[->] (line32) edge[bend left=90] node {false} (terminal);
 \end{tikzpicture}
 
