@@ -113,24 +113,24 @@ signInForm.addEventListener('submit', function (submitEvent) {
                       child {
                         node [label={[label distance=1cm]east:Dòng 14}, step node] {10}
                         child {
-                          node [label={[label distance=0.05cm]west:Dòng 15}, step node] (line15) {11} edge from parent node[left] {true}
+                          node [label={[label distance=1cm]west:Dòng 15}, step node] (line15) {11} edge from parent node[left] {true}
                         }
                         child {
                           node [label={[label distance=1cm]east:Dòng 16}, step node] {12}
                           child {
-                            node [label={[label distance=0.05cm]west:Dòng 17}, step node] (line17) {13} edge from parent node[left] {true}
+                            node [label={[label distance=1cm]west:Dòng 17}, step node] (line17) {13} edge from parent node[left] {true}
                           }
                           child {
                             node [label={[label distance=1cm]east:Dòng 18}, step node] {14}
                             child {
-                              node [label={[label distance=0.05cm]west:Dòng 19}, step node] (line19) {15} edge from parent node[left] {true}
+                              node [label={[label distance=1cm]west:Dòng 19}, step node] (line19) {15} edge from parent node[left] {true}
                             }
                             child {
                               node [label={[label distance=1cm]east:Dòng 21}, step node] {16}
                               child {
-                                node [label={[label distance=1cm]east:Dòng 24}, step node] {17}
+                                node [label={[label distance=1cm]east:Dòng 24}, step node] (line24) {17}
                                 child {
-                                  node [label={[label distance=0.05cm]west:Dòng 25}, step node] (line25) {18} edge from parent node[left] {true}
+                                  node [label={[label distance=1cm]west:Dòng 25}, step node] (line25) {18} edge from parent node[left] {true}
                                 }
                                 child {
                                   node [label={[label distance=1cm]east:Dòng 27}, step node] {19}
@@ -169,9 +169,9 @@ signInForm.addEventListener('submit', function (submitEvent) {
         }
       }
 		};
-    \draw[->] (line15) to[out=-90,in=180] (line30);
-    \draw[->] (line17) to[out=-90,in=180] (line30);
-    \draw[->] (line19) to[out=-90,in=180] (line30);
+    \draw[->] (line15) to[out=-90,in=180] (line24);
+    \draw[->] (line17) to[out=-90,in=180] (line24);
+    \draw[->] (line19) to[out=-70,in=180] (line24);
     \draw[->] (line25) to[out=-70,in=180] (line30);
     \path[->] (line32) edge[bend left=90] node {false} (terminal);
 \end{tikzpicture}
