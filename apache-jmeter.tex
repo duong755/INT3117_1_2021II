@@ -1,18 +1,90 @@
-\documentclass{article}
-\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm]{geometry}
+\documentclass[oneside]{report}
+\usepackage[a4paper,top=3cm,right=3cm,bottom=3cm,left=3cm]{geometry}
+\usepackage[utf8]{inputenc}
 \usepackage[utf8]{vietnam}
-\usepackage{enumitem}
-\usepackage{graphicx}
-\usepackage{xurl}
-\usepackage{minted}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{chngcntr}
+\usepackage{subcaption}
+\usepackage{booktabs}
 
-\title{}
-\author{}
-\date{\today}
+\renewcommand{\familydefault}{\sfdefault}
+
+\pagestyle{fancy}
+\setlength{\headheight}{16pt}
+\lhead{}
+\rhead{\leftmark}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\titleformat{\chapter}[display]{\flushright\bf\huge\color{red}}{\chaptertitlename\ \thechapter}{10pt}{}
+\titleformat{\section}{\bf\Large\color{red}}{\thesection}{10pt}{}
+\titleformat{\subsection}{\bf\large\color{red}}{\thesubsection}{10pt}{}
+\titleformat{\subsubsection}{\bf\normalsize\color{red}}{\thesubsubsection}{10pt}{}
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[double,double distance=5pt,ultra thick] ($(current page.north west) + (2cm,-2cm)$) rectangle ($(current page.south east) + (-2cm,2cm)$);
+    \end{tikzpicture}
 
+    \begin{center}
+        \vfill
+        {\LARGE\bf Kiểm thử và đảm bảo chất lượng phần mềm} \\
+        {\Large\bf INT3117 1, học kỳ II năm học 2020$-$2021} \\
+        \bigskip
+        \bigskip
+
+        \hrule
+        \bigskip
+        {\Huge\bf Tìm hiểu công cụ Apache Jmeter}
+        \bigskip
+        \hrule
+
+        \bigskip
+        \bigskip
+
+        % chktex-file 44
+        \begin{tabular}{c|l}
+            \multirow{2}{*}{Thành viên nhóm} & Ngô Quang Dương (17020191) \\
+            & Nguyễn Phương Hiếu (17020747) \\
+        \end{tabular} \\
+        \medskip
+        {\today}
+        \vfill
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\chapter{Giới thiệu}
+
+\section{Lịch sử}
+
+\section{Cài đặt}
+
+\section{Giao diện đồ họa}
+
+\chapter{Một số tính năng}
+
+\section{Kiểm tra hiệu năng}
+
+\section{Test IDE}
+
+\section{Tạo báo cáo}
+
+\section{Mở rộng}
+
+\chapter{So sánh}
+
+\section{Selenium IDE}
+
+\section{Gatling}
 
 \end{document}
