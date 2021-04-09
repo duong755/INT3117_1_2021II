@@ -1,4 +1,4 @@
-\documentclass[oneside,12pt]{report}
+\documentclass[10pt]{report}
 \usepackage[a4paper,top=2cm,right=2cm,bottom=2cm,left=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[utf8]{vietnam}
@@ -124,8 +124,14 @@ printable_docs/
 
 \begin{itemize}[itemsep=0pt]
   \item \texttt{bin/} chứa các file thực thi để sử dụng \jmeter{}.
-  \item \texttt{lib/} chứa các file JAR $-$ là các plugins, các extensions cho \jmeter{}.
+  \item \texttt{lib/}
+      \begin{itemize}[itemsep=0pt]
+          \item \texttt{./} các file JAR tiện ích.
+          \item \texttt{ext/} các plugins cho \jmeter{}.
+      \end{itemize}
 \end{itemize}
+
+\par Những file JAR của JDBC, JMS (Java Message Service, chẳng hạn như Apache Kafka) và những thư viện mà \jmeter{} cần đều được đặt trong thư mục \texttt{lib/} (không phải thư mục \texttt{lib/ext/}).
 
 \par Để bắt đầu sử dụng \jmeter{}, truy cập thư mục \texttt{bin/} (từ Powershell/Command Prompt nếu sử dụng Windows, từ Terminal nếu sử dụng Linux/Mac), sau đó
 \begin{itemize}[itemsep=0pt]
@@ -153,6 +159,21 @@ printable_docs/
 \texttt{/etc/java-8-openjdk/accessibility.properties}
 \end{quotation}
 \par và khởi động \jmeter{} một lần nữa.
+
+\chapter{Các thành phần/khái niệm cơ bản trong Apache JMeter}
+
+\section{Test plan}
+
+\section{Thread group}
+
+\section{Controller}
+
+\section{Listener}
+
+\section{Timer}
+
+\section{Assertion}
+
 
 \chapter{Một số tính năng}
 
