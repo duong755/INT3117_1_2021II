@@ -34,9 +34,11 @@
 \titleformat{\subsection}{\bf\large\color{red}}{\thesubsection}{10pt}{}
 \titleformat{\subsubsection}{\bf\normalsize\color{red}}{\thesubsubsection}{10pt}{}
 
-\newcommand{\jmeter}{\textbf{Apache JMeter}}
+\newcommand{\apachejmeter}{\textbf{Apache JMeter}}
+\newcommand{\jmeter}{\textbf{JMeter}}
 \newcommand{\apache}{\textbf{Apache}}
 \newcommand{\java}{\textbf{Java}}
+\newcommand{\jmeterhome}{\texttt{\$JMETER\_HOME}}
 
 \begin{document}
 
@@ -76,7 +78,7 @@
 
 \section{Lịch sử}
 
-\par \jmeter{} là một dự án mã nguồn mở của \apache{}, được viết hoàn toàn bằng \java{}. Mã nguồn của dự án được public trên GitHub:~\url{https://github.com/apache/jmeter}
+\par \jmeter{} là một dự án mã nguồn mở của \apache{}, được viết hoàn toàn bằng \java{}. \jmeter{} cung cấp giao diện đồ họa sử dụng Swing. Mã nguồn của dự án được public trên GitHub:~\url{https://github.com/apache/jmeter}
 
 \par Người đầu tiên phát triển \jmeter{} là \href{https://www.linkedin.com/in/stefanom}{Stefano Mazzocchi}. Ban đầu, anh tạo ra công cụ này để kiểm tra hiệu năng cho một dự án web server là \textbf{Apache JServ}, dự án mà sau này được thay thế bằng \textbf{Apache Tomcat}. Phiên bản 1.0 của \jmeter{} được đưa ra vào cuối năm 1998. Từ đó đến nay, các tính năng của \jmeter{} liên tục được bổ sung và nâng cao.
 
@@ -120,7 +122,7 @@ printable_docs/
   - usermanual/
 \end{verbatim}
 
-\par Trong các thư mục trên, cần lưu ý nhất tới \texttt{bin/} và \texttt{lib/}.
+\par Trong các thư mục trên, cần lưu ý nhất tới \texttt{bin/} và \texttt{lib/}. \textbf{Quy ước trong toàn bộ báo cáo này, \jmeterhome{} là thư mục chứa \texttt{bin/} và \texttt{lib/}}.
 
 \begin{itemize}[itemsep=0pt]
   \item \texttt{bin/} chứa các file thực thi để sử dụng \jmeter{}.
@@ -160,21 +162,90 @@ printable_docs/
 \end{quotation}
 \par và khởi động \jmeter{} một lần nữa.
 
-\chapter{Các thành phần cơ bản trong Apache JMeter}
+\chapter{Các thành phần và cách hoạt động của JMeter}
 
-\par Một bộ kiểm thử trong \jmeter{} có thể chứa các thành phần sau:
 \section{Test plan}
 
 \par Để thực hiện việc kiểm thử với \jmeter{}, việc đầu tiên cần làm chính là tạo một Test plan.
 
-\par Test plan chính là đơn vị/thành phần lớn nhất mà ta sẽ làm việc cùng khi sử dụng \jmeter{}.
+\par Test plan chính là đơn vị/thành phần lớn nhất mà ta sẽ làm việc cùng khi sử dụng \jmeter{}. Test plan chứa một chuỗi các hành động mà \jmeter{} sẽ thực thi khi chạy test plan đó.
+
+\par Một test plan hoàn chỉnh trong \jmeter{} bao gồm những thành phần sau:
+\begin{itemize}[itemsep=0pt]
+    \item Thread group.
+    \item Controller.
+    \item Listener.
+    \item Timer.
+    \item Assertion.
+    \item Cấu hình.
+\end{itemize}
+
+\par Một test plan được lưu trong một file XML với phần mở rộng là \texttt{jmx}. Nội dung/thành phần của một test plan có thể được thêm/bớt/chỉnh sửa trên giao diện đồ họa của \jmeter{} hoặc thông qua việc chỉnh sửa file \texttt{*.jmx}.
 
 \section{Thread group}
 
+\par Thread group là thành phần bắt buộc phải có trong một test plan, đồng thời cũng là thành phần đầu tiên hoạt động khi một test plan được thực thi.
+
+\par Thread group quản lý các luồng mà \jmeter{} sẽ sử dụng để thực hiện kiểm thử. Các luồng mà thread group quản lý được coi là sự giả lập người dùng/request, các luồng này hoàn toàn độc lập với nhau.
+
+\FloatBarrier{}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.3]{thread-group.png}
+    \caption{Các thuộc tính của một thread group}
+    {\label{fig:thread-group}}
+\end{figure}
+\FloatBarrier{}
+
+\par Như trong hình~\ref{fig:thread-group}, một thread group có các thuộc tính sau:
+\begin{itemize}
+    \item Number of threads ($n$): Đây là số lượng luồng mà \jmeter{} sẽ tạo và thực thi khi chạy.
+    \item Ramp-up period ($t$): Thời lượng mà \jmeter{} dùng để khởi động toàn bộ số lượng luồng đã chỉ định. Chẳng hạn, nếu có $n$ luồng được tạo, còn ramp-up period là $t$ giây thì mỗi luồng sẽ bắt đầu $t/n$ giây sau khi luồng trước đó đã bắt đầu. Với cơ chế như vậy, nếu số lượng luồng là rất lớn thì ramp-up period cũng cần phải đủ lớn để tránh quá tải.
+    \item Loop count ($\ell$): Sau mỗi $n/t$ giây, $\ell$ luồng sẽ chạy.
+\end{itemize}
+
+\par Ngoài ra, \jmeter{} cho phép chọn thời gian sống (duration), thời gian trễ khởi động (startup delay) của một luồng.
+
 \section{Controller}
 
+\par Trong \jmeter{}, controller là thành phần quyết định quá trình xử lý của một test plan, và có ba loại controller như dưới đây.
+
 \subsection{Sampler}
-\subsection{Logic controller}
+
+\par Sampler yêu cầu \jmeter{} gửi request đến server. Chẳng hạn, để \jmeter{} gửi một HTTP request, ta cần một HTTP request sampler. Nói chung, với các giao thức/ứng dụng/dịch vụ khác nhau, có một sampler tương ứng để tạo request với giao thức/ứng dụng/dịch vụ đó.
+
+\par Dưới đây liệt kê một số sampler (còn có các sampler khác) có trong \jmeter{}:
+
+\begin{itemize}[itemsep=0pt]
+    \item \textbf{HTTP request}
+        \par Sampler này cho phép gửi HTTP/HTTPS request đến server, thiết lập các thuộc tính của một request như method, parameter, body, file (upload) \ldots
+        \par Một HTTP request sampler có thể gửi request đến một SOAP, REST web service. Hơn thế nữa, sampler này còn cho phép gửi GraphQL HTTP request.
+    \item \textbf{JDBC request}
+        \par JDBC request sampler gửi truy vấn SQL đến một cơ sở dữ liệu. Cần cung cấp Driver class và cấu hình JDBC để sử dụng sampler này.
+    \item \textbf{Java object request}
+        \par Sampler này cho phép điều khiển một class được implement interface
+
+        \begin{quotation}
+            \texttt{org.apache.jmeter.protocol.java.sampler.JavaSamplerClient}
+        \end{quotation}
+    \item \textbf{JUnit request}
+        \par Với sampler này, \jmeter{} có thể chạy các JUnit test. Để làm được điều này, ta thực hiện các việc sau:
+        \begin{enumerate}[itemsep=0pt,itemindent=1cm,label = Bước \arabic*.]
+            \item Biên dịch các file chứa các test case thành những file \texttt{*.jar}
+            \item Đặt các file \texttt{*.jar} vừa biên dịch vào thư mục \texttt{\jmeterhome{}/lib/junit/}
+            \item Thêm JUnit request sampler vào test plan. JUnit request sampler sẽ nhận ra các class JUnit test và các method được gắn annotate \texttt{@Test}.
+        \end{enumerate}
+        \par Ở thời điểm viết báo cáo này, \jmeter{} chưa chính thức hỗ trợ Junit 5, mà chỉ đến JUnit 3 và 4.
+    \item \textbf{Mail request}
+        \par Mail request có thể được chia làm hai loại: đọc mail và gửi mail.
+        \par Sampler để đọc mail là \textit{Mail Reader Sampler}. Sampler này có thể sử dụng giao thức POP3 (S) hoặc IMAP (S).
+        \par Sampler để gửi mail là \textit{SMTP Sampler}. Sampler này sử dụng giao thức SMTP (S).
+    \item \textbf{OS process request}
+        \par Sampler này được dùng để thực thi các lệnh trên máy cài \jmeter{}. Sampler này sử dụng được trên cả Windows, Linux và Mac, mặc dù cơ chế phân tích cú pháp lệnh trên shell của các hệ điều hành này khác nhau.
+\end{itemize}
+
+\subsection{Logical}
+
 \subsection{Test fragment}
 
 \section{Listener}
@@ -188,6 +259,8 @@ printable_docs/
 \subsection{Cấu hình}
 \subsection{Tiền xử lý}
 \subsection{Hậu xử lý}
+
+\section{Cách hoạt động}
 
 \chapter{Một số tính năng}
 
