@@ -17,6 +17,7 @@
 \usepackage{graphicx}
 \usepackage{placeins}
 \usepackage{enumitem}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
 
 \setlength{\headheight}{17.64015pt}
 \renewcommand{\familydefault}{\sfdefault}
@@ -208,11 +209,13 @@ printable_docs/
 
 \section{Controller}
 
-\par Trong \jmeter{}, controller là thành phần quyết định quá trình xử lý của một test plan, và có ba loại controller như dưới đây.
+\par Trong \jmeter{}, controller là thành phần quyết định quá trình xử lý của một test plan, và có hai loại controller như dưới đây.
 
 \subsection{Sampler}
 
 \par Sampler yêu cầu \jmeter{} gửi request đến server. Chẳng hạn, để \jmeter{} gửi một HTTP request, ta cần một HTTP request sampler. Nói chung, với các giao thức/ứng dụng/dịch vụ khác nhau, có một sampler tương ứng để tạo request với giao thức/ứng dụng/dịch vụ đó.
+
+\par Mục đích của việc sử dụng \jmeter{} là kiểm tra hiệu năng của giao thức/ứng dụng/dịch vụ $-$ do đó việc tạo request là điều phải xảy ra khi thực thi một test plan. Nói cách khác, trong một test plan, phải có ít nhất một sampler.
 
 \par Dưới đây liệt kê một số sampler (còn có các sampler khác) có trong \jmeter{}:
 
@@ -244,15 +247,48 @@ printable_docs/
         \par Sampler này được dùng để thực thi các lệnh trên máy cài \jmeter{}. Sampler này sử dụng được trên cả Windows, Linux và Mac, mặc dù cơ chế phân tích cú pháp lệnh trên shell của các hệ điều hành này khác nhau.
 \end{itemize}
 
-\subsection{Logical}
+\subsection{Logic controller}
 
-\subsection{Test fragment}
+\par Khác với sampler, một logic controller là thành phần không bắt buộc có trong một test plan. Nhưng logic controller quyết định thứ tự xử lý của các sampler. Logic controller chứa các sampler và còn có thể chứa các logic controller khác.
+
+\par Dưới đây là một số controller đại diện trong \jmeter{}, tên gọi của những controller này đã cho thấy chúng hoạt động thế nào:
+
+\begin{itemize}[itemsep=0pt]
+    \item \textbf{Loop controller}
+        \par Như tên gọi, controller này sẽ lặp lại các request.
+        \par Thuộc tính duy nhất của loop controller là loop count. Thuộc tính này kết hợp với loop count của thread group $-$ tức là khi thực thi test plan, trong test plan này có một loop controller, số request được gửi sẽ là
+        \[
+            \text{number of requests} = \text{loop count of thread group} \times \text{loop count of loop controller}
+        \]
+    \item \textbf{Once only controller}
+        \par Controller này chỉ cho phép request bên trong nó chạy một lần.
+    \item \textbf{While controller}
+        \par Controller này cần được cung cấp thuộc tính \texttt{Condition} $-$ đây là một giá trị boolean hoặc một biểu thức sẽ trả về giá trị boolean. Giá trị/biểu thức được cung cấp cho \texttt{Condition} có thể sử dụng biến và hàm của \jmeter{}.
+        \par Khi chạy test plan, các thành phần của \textbf{While controller} sẽ chạy đến khi \texttt{Condition} có giá trị \texttt{false}.
+        \par Nếu \texttt{Condition} bị bỏ trống hoặc có giá trị \texttt{LAST}, vòng lặp sẽ dừng lại khi sample cuối cùng trong \texttt{While controller} fail.
+    \item \textbf{ForEach controller}
+        \par \textbf{ForEach controller} duyệt qua một tập hợp các biến. Các biến này có cùng \textit{prefix} và được theo sau bởi số thứ tự (bắt đầu từ 1). Ví dụ:
+        \begin{quotation}
+            \texttt{inputVar\_1}, \texttt{inputVar\_2}, \texttt{inputVar\_3}, \texttt{inputVar\_4}
+        \end{quotation}
+        \par Nếu biến có giá trị \texttt{null}, sampler trong \textbf{ForEach Controller} sẽ không chạy.
+        \par Mỗi lần duyệt, các sampler trong \textbf{ForEach controller} chạy thêm một lần.
+    \item \textbf{If controller}
+        \par Controller này cũng có một thuộc tính \texttt{Condition}, tuy nhiên giá trị/biểu thức được cung cấp cho thuộc tính này được tính toán bằng \textbf{JavaScript}.
+        \par Nếu \texttt{Condition} \texttt{true}, các thành phần trong \textbf{If controller} sẽ chạy. Ngược lại, chúng sẽ bị bỏ qua.
+    \item \textbf{Switch controller}
+    \item \textbf{Simple controller}
+    \item \textbf{Interleave controller}
+    \item \textbf{Runtime controller}
+    \item \textbf{Module controller}
+    \item \textbf{Include controller}
+\end{itemize}
 
 \section{Listener}
 
-\section{Timer}
-
 \section{Assertion}
+
+\section{Timer}
 
 \section{Các thành phần khác}
 
@@ -279,11 +315,5 @@ printable_docs/
 \section{Khả năng mở rộng}
 
 \section{Khả năng tích hợp với các công cụ khác}
-
-\chapter{So sánh}
-
-\section{Selenium IDE}
-
-\section{Gatling}
 
 \end{document}
