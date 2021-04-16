@@ -56,7 +56,7 @@
         \bigskip
 
         \bigskip
-        {\Huge\bf Tìm hiểu công cụ Apache Jmeter}
+        {\Huge\bf Tìm hiểu công cụ Apache JMeter}
         \bigskip
 
         \bigskip
@@ -80,6 +80,8 @@
 \section{Lịch sử}
 
 \par \jmeter{} là một dự án mã nguồn mở của \apache{}, được viết hoàn toàn bằng \java{}. \jmeter{} cung cấp giao diện đồ họa sử dụng Swing. Mã nguồn của dự án được public trên GitHub:~\url{https://github.com/apache/jmeter}
+
+\par \jmeter{} được sử dụng để kiểm tra hiệu năng của server (web server, FTP server, mail server, \ldots), giả lập lượt truy cập, hiển thị kết quả kiểm tra hiệu năng trên giao diện đồ họa.
 
 \par Người đầu tiên phát triển \jmeter{} là \href{https://www.linkedin.com/in/stefanom}{Stefano Mazzocchi}. Ban đầu, anh tạo ra công cụ này để kiểm tra hiệu năng cho một dự án web server là \textbf{Apache JServ}, dự án mà sau này được thay thế bằng \textbf{Apache Tomcat}. Phiên bản 1.0 của \jmeter{} được đưa ra vào cuối năm 1998. Từ đó đến nay, các tính năng của \jmeter{} liên tục được bổ sung và nâng cao.
 
@@ -254,6 +256,8 @@ printable_docs/
 \par Dưới đây là một số controller đại diện trong \jmeter{}, tên gọi của những controller này đã cho thấy chúng hoạt động thế nào:
 
 \begin{itemize}[itemsep=0pt]
+    \item \textbf{Simple controller}
+        \par Chức năng duy nhất của \textbf{Simple controller} lưu lại kết quả chạy của test plan vào một file của thư mục hiện tại (thư mục mà ở đó khởi động \jmeter{}).
     \item \textbf{Loop controller}
         \par Như tên gọi, controller này sẽ lặp lại các request.
         \par Thuộc tính duy nhất của loop controller là loop count. Thuộc tính này kết hợp với loop count của thread group $-$ tức là khi thực thi test plan, trong test plan này có một loop controller, số request được gửi sẽ là
@@ -276,10 +280,10 @@ printable_docs/
     \item \textbf{If controller}
         \par Controller này cũng có một thuộc tính \texttt{Condition}, tuy nhiên giá trị/biểu thức được cung cấp cho thuộc tính này được tính toán bằng \textbf{JavaScript}.
         \par Nếu \texttt{Condition} \texttt{true}, các thành phần trong \textbf{If controller} sẽ chạy. Ngược lại, chúng sẽ bị bỏ qua.
-    \item \textbf{Switch controller}
-    \item \textbf{Simple controller}
-    \item \textbf{Interleave controller}
     \item \textbf{Runtime controller}
+        \par \textbf{Runtime controller} kiểm soát thời gian chạy của các thành phần bên trong nó. Thuộc tính quy định điều này là \texttt{Runtime} (tính bằng giây). Đến khi thời gian đã chạy của các thành phần trong \textbf{Runtime controller} vượt quá giá trị của \texttt{Runtime} (giây), chúng sẽ dừng lại.
+    \item \textbf{Interleave controller}
+    \item \textbf{Switch controller}
     \item \textbf{Module controller}
     \item \textbf{Include controller}
 \end{itemize}
