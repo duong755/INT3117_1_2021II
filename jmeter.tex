@@ -1,5 +1,5 @@
-\documentclass[10pt]{report}
-\usepackage[a4paper,top=2cm,right=2cm,bottom=2cm,left=2cm]{geometry}
+\documentclass[12pt]{report}
+\usepackage[a4paper,top=2.5cm,right=2.5cm,bottom=2.5cm,left=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[utf8]{vietnam}
 \usepackage{multirow}
@@ -18,12 +18,13 @@
 \usepackage{placeins}
 \usepackage{enumitem}
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{minted}
 
 \setlength{\headheight}{17.64015pt}
 \renewcommand{\familydefault}{\sfdefault}
 
 \pagestyle{fancy}
-\setlength{\headheight}{16pt}
+\setlength{\headheight}{20pt}
 \lhead{}
 \rhead{\leftmark}
 \lfoot{}
@@ -149,7 +150,7 @@ printable_docs/
 \FloatBarrier{}
 \begin{figure}[htp]
     \centering
-    \includegraphics[scale=0.33]{jmeter_gui.png}
+    \includegraphics[scale=0.3]{jmeter_gui.png}
     \caption{Giao diện đồ họa của \jmeter{}}
 \end{figure}
 \FloatBarrier{}
@@ -163,9 +164,100 @@ printable_docs/
 \begin{quotation}
     \texttt{/etc/java-8-openjdk/accessibility.properties}
 \end{quotation}
-\par và khởi động \jmeter{} một lần nữa.
+\par và khởi động lại \jmeter{}.
 
-\chapter{Các thành phần và cách hoạt động của JMeter}
+
+\chapter{Một số tính năng}
+
+\section{Kiểm tra hiệu năng}
+
+\par Đây là tính năng chính của \jmeter{}. \jmeter{} có thể kiểm tra hiệu năng của các web server, giao thức, tiến trình khác nhau.
+
+\par \jmeter{} có khả năng kiểm tra rộng đến vậy vì được viết hoàn toàn bằng \textbf{Java}. Công cụ này cung cấp tính năng giả lập luồng sử dụng/người dùng để test hiệu năng của hệ thống khi có nhiều lượt truy cập cùng lúc. Một lần nữa, điều này khả thi nhờ khả năng lập trình đa luồng và khả năng chịu tải ghê gớm của \textbf{Java}.
+
+\bigskip
+
+\par \jmeter{} có thể kiểm tra hiệu năng web server $-$ web server có thể sử dụng bất kỳ ngôn ngữ nào (vì HTTP/HTTPS độc lập với ngôn ngữ).
+\par \jmeter{} kiểm tra được loại webservices như SOAP, REST, và cả GraphQL.\@
+\par \jmeter{} có thể kiểm thử các kết nối, truy vấn đến các cơ sở dữ liệu thông qua JDBC.\@
+\par \jmeter{} có thể kiểm tra hiệu năng của các Message-oriented Middleware thông qua Java Message Service.
+\par \jmeter{} tạo được các request trên các giao thức FTP, SMTP/SMTPS, POP3/POP3S, TCP.\@
+
+\section{Tạo báo cáo}
+
+\par Các response, thời gian response, kết quả kiểm thử, \ldots của một \textbf{Test Plan} có thể được visualize dưới dạng biểu đồ (xem hình~\ref{fig:aggregate} và~\ref{fig:time-response}), kết xuất thành file hoặc bảng.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.3]{aggregate.png}
+    \caption{Aggregate Graph}
+    {\label{fig:aggregate}}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.3]{timeresponse.png}
+    \caption{Time Response}
+    {\label{fig:time-response}}
+\end{figure}
+
+\section{Mở rộng}
+
+\par Khả năng mở rộng của \jmeter{} đến từ hai việc:
+
+\begin{itemize}
+    \item \jmeter{} có thể được cài thêm plugins.
+    \item \jmeter{} có thể tích hợp với các công cụ kiểm thử khác để thực hiện những việc mà một mình \jmeter{} không thể. \jmeter{} có thể được tích hợp với \textbf{Katalon Studio}, \textbf{Selenium IDE}.
+\end{itemize}
+
+\chapter{Các thành phần chính và cách hoạt động của JMeter}
+
+\section{Dùng thử}
+
+\par Trước khi trình bày về các thành phần chính và cách hoạt động của \jmeter{}, ta nên dùng thử và có cái nhìn sơ qua về một số thành phần cần lưu ý khi sử dụng công cụ này.
+
+\par Mở \textbf{Terminal}, di chuyển đến thư mục cài đặt của \jmeter{}, chạy lệnh sau để mở giao diện đồ họa:
+\begin{quotation}
+    \begin{minted}{shell}
+# Linux
+./bin/jmeter
+\end{minted}
+    \begin{minted}{powershell}
+# Windows
+.\bin\jmeter.bat
+\end{minted}
+\end{quotation}
+
+\par Để dễ dàng bắt đầu, \jmeter{} có cung cấp cho một số template.
+
+\par Trên thanh công cụ, lần lượt chọn \texttt{File > Templates\ldots} và chọn \texttt{Building a Web Test Plan}. Workspace của \jmeter{} hiển thị lại như hình~\ref{fig:template}.
+
+\FloatBarrier{}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=0.33]{template.png}
+    \caption{Template}
+    {\label{fig:template}}
+\end{figure}
+\FloatBarrier{}
+
+\par Giải thích các thành phần trong cấu trúc cây ở bên trái của hình~\ref{fig:template}:
+
+\begin{itemize}
+    \item \texttt{build-web-test-plan}: tên của \textbf{Test Plan} (thành phần lớn nhất của \jmeter{}, mọi thứ khác đều thuộc một \textbf{Test Plan}).
+    \item \textit{Scope}: Các thành phần \texttt{HTTP Request Defaults}, \texttt{HTTP Cookie Manager}, \texttt{HTTP Header Manager}, \texttt{Home Page}, \texttt{ThinkTime1s}, \texttt{Page Returning 404}, \texttt{Keystore Configuration} thuộc cùng một scope. \texttt{Assertion}, \texttt{URT}, \texttt{Assertion\_404} không thuộc scope đó.
+    \item \texttt{Scenario 1}: tên của \textbf{Thread Group} (thành phần xử lý của một \textbf{Test Plan}).
+    \item \texttt{Home Page, ThinkTime1s, Page Returning 404}: các HTTP request samplers, mỗi sampler sẽ thực hiện một HTTP request.
+    \item \texttt{HTTP Request Defaults}: request mặc định nếu các HTTP request sampler không chỉ định Server Name hay IP.\@
+    \item \texttt{HTTP Cookie Manager}: thêm cookie cho các HTTP request cùng scope.
+    \item \texttt{HTTP Header Manager}: thêm header cho các HTTP request cùng scope.
+    \item \texttt{Assertion}: kiểm tra response của \texttt{Home Page}.
+    \item \texttt{URT}: delay \texttt{ThinkTime1s} trong 1 giây.
+    \item \texttt{Assertion\_404}: kiểm tra response của \texttt{Page Returning 404}.
+    \item \texttt{View Results Tree}: hiển thị các kết quả, các response của các samplers trên.
+\end{itemize}
+
+\par Để thực thi \textbf{Test Plan}, bấm nút Play. Nội dung các request/response được lưu lại trong \texttt{View Results Tree}. Khi chạy, \textbf{Test Plan} sẽ thực thi tuần tự các \textbf{samplers}.
 
 \section{Test plan}
 
@@ -363,33 +455,63 @@ printable_docs/
 
 \begin{itemize}
     \item \textbf{HTML Link Parser}: Sau khi một sampler nhận được response data (ở dạng HTML), thành phần này sẽ phân tích tài liệu HTML đó và trích xuất ra các siêu liên kết và form. Sampler liền sau có thể sử dụng lại những giá trị được trích xuất này.
-    \item \textbf{User Parameters}
-    \item \textbf{RegEx User Parameters}
-    \item \textbf{Sample Timeout}
+    \item \textbf{User Parameters}: Thành phần này cho phép tạo các biến cho từng user/thread.
+    \item \textbf{Sample Timeout}: Thành phần này hẹn giờ để ngắt một sampler nếu sampler đó mất quá nhiều thời gian để hoàn thành.
 \end{itemize}
 
 \subsection{Hậu xử lý}
 
 \par Thành phần hậu xử lý được thực thi sau các samplers, nhưng chạy trước các \textbf{Assertion}.
 
+\par Đa số các thành phần hậu xử lý được cung cấp bởi \jmeter{} là các extractor $-$ chúng trích xuất các giá trị từ response của sampler.
+
+\begin{itemize}
+    \item \textbf{Regular Expression Extractor}: Trích xuất các giá trị từ response bằng regex (Perl regex).
+    \item \textbf{CSS Selector Extractor}: Nếu response là một tài liệu HTML, thành phần này có thể trích xuất nội dung của các tag, các attribute bằng CSS selector.
+    \item \textbf{XPath/XPath2 Extractor}: Nếu response là một tài liệu XML, thanh phần này có thể sử dụng truy vấn XPath/XPath 2.0 để trích xuất giá trị (có thể trích xuất nhiều giá trị cùng lúc).
+    \item \textbf{JSON JMESPath Extractor}: Mặc dù có tên gọi như vậy nhưng thành phần này lại chỉ trích xuất giá trị từ tài liệu XML hoặc HTML. Tuy nhiên, mỗi lần chỉ có thể trích xuất được một giá trị.
+    \item \textbf{JSON Extractor}: Thành phần này cho phép trích xuất dữ liệu là JSON response bằng JSON Path.
+    \item \textbf{Boundary Extractor}: Thành phần này cho pehsp trích xuất các giá trị từ response thông qua việc cung cấp delimiter trái và phải.
+\end{itemize}
+
+\par Bên cạnh đó là các thành phân hậu xử lý khác.
+
+\begin{itemize}
+    \item \textbf{Result Status Action Handler}: Thành phần này cho phép đưa ra quyết định làm gì khi một sampler bị lỗi (dừng test hay chỉ dừng thread).
+    \item \textbf{BeanShell/JSR223 PostProcessor}: Thành phần này cho phép một đoạn script BeanShell/JSR223 thực thi sau khi sampler thực hiện xong.
+    \item \textbf{JDBC PostProcessor}: Thành phần này cho phép chạy các câu lệnh SQL sau khi sampler thực hiện xong $-$ điều này hữu ích khi muốn khôi phục cơ sở dữ liệu về trạng thái cũ sau khi JDBC sample thay đổi cơ sở dữ liệu.
+\end{itemize}
+
+\subsection{Cấu hình}
+
+\par Các thành phần cấu hình được sử dụng để set up các giá trị mặc định và các biến để sau đó các samplers sử dụng. Do đó, chúng luôn được xử lý ở phần mở đầu của một scope, nói cách khác là trước mọi sampler trong scope đó.
+
+\par Cấu hình trong \jmeter{} có thể là:
+\begin{itemize}
+    \item Các giá trị, các biến (CSV Data Set Config, User variable, Counter, Random variable).
+    \item Request mặc định (FTP request, HTTP request, Java request, LDAP request, TCP sampler config).
+    \item Cấu hình kết nối (JDBC connection, Bolt connection).
+    \item Các trình quản lý dành cho giao thức HTTP (HTTP cache, HTTP cookie, HTTP header, HTTP authorization).
+\end{itemize}
+
 \section{Cách hoạt động}
 
-\chapter{Một số tính năng}
+\par Như vậy, chúng ta đã đi qua việc dùng thử \jmeter{} và mô tả khái quát các thành phần chính của một \textbf{Test Plan}. Tổng kết lại, khi một \textbf{Test Plan} chạy, trình tự xử lý của các thành phần là như sau:
 
-\section{Kiểm tra hiệu năng}
-
-\subsection{Ứng dụng Web}
-
-\subsection{JDBC}
-
-\subsection{Java Message Service}
-
-\subsection{REST}
-
-\section{Tạo báo cáo}
-
-\section{Khả năng mở rộng}
-
-\section{Khả năng tích hợp với các công cụ khác}
+\begin{itemize}
+    \item Bắt đầu Thread
+    \item Các cấu hình
+    \item Logic Controller/Sampler
+          \begin{itemize}
+              \item Tiền xử lý
+              \item Timer
+              \item Logic Controller/Sampler con
+              \item Assertion
+              \item Listener
+              \item Hậu xử lý
+          \end{itemize}
+    \item Lưu và hiển thị kết quả
+    \item Lặp lại Thread
+\end{itemize}
 
 \end{document}
