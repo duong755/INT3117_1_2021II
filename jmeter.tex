@@ -64,8 +64,8 @@
 
         % chktex-file 44
         \begin{tabular}{c|l}
-            \multirow{2}{*}{Thành viên nhóm} & Ngô Quang Dương (17020191) \\
-            & Nguyễn Phương Hiếu (17020747) \\
+            \multirow{2}{*}{Thành viên nhóm} & Ngô Quang Dương (17020191)    \\
+                                             & Nguyễn Phương Hiếu (17020747) \\
         \end{tabular} \\
         \medskip
         {\today}
@@ -91,14 +91,14 @@
 
 \par Ở thời điểm báo cáo này được viết, phiên bản mới nhất của \jmeter{} là 5.4.1. \jmeter{} có thể được tải về dưới một trong hai dạng: \textit{mã nguồn} và \textit{binaries} từ website
 \begin{quotation}
-  \url{https://jmeter.apache.org/download_jmeter.cgi}
+    \url{https://jmeter.apache.org/download_jmeter.cgi}
 \end{quotation}
 
 \par Phiên bản này yêu cầu máy có \java{} 8+. Nếu chọn cách tải mã nguồn, máy cần được cài thêm Gradle để biên dịch.
 \bigskip
 \par Các phiên bản trước của \jmeter{} có thể được tải về từ link lưu trữ
 \begin{quotation}
-  \url{https://archive.apache.org/dist/jmeter/binaries/}
+    \url{https://archive.apache.org/dist/jmeter/binaries/}
 \end{quotation}
 
 \bigskip
@@ -128,40 +128,40 @@ printable_docs/
 \par Trong các thư mục trên, cần lưu ý nhất tới \texttt{bin/} và \texttt{lib/}. \textbf{Quy ước trong toàn bộ báo cáo này, \jmeterhome{} là thư mục chứa \texttt{bin/} và \texttt{lib/}}.
 
 \begin{itemize}[itemsep=0pt]
-  \item \texttt{bin/} chứa các file thực thi để sử dụng \jmeter{}.
-  \item \texttt{lib/}
-      \begin{itemize}[itemsep=0pt]
-          \item \texttt{./} các file JAR tiện ích.
-          \item \texttt{ext/} các plugins cho \jmeter{}.
-      \end{itemize}
+    \item \texttt{bin/} chứa các file thực thi để sử dụng \jmeter{}.
+    \item \texttt{lib/}
+          \begin{itemize}[itemsep=0pt]
+              \item \texttt{./} các file JAR tiện ích.
+              \item \texttt{ext/} các plugins cho \jmeter{}.
+          \end{itemize}
 \end{itemize}
 
 \par Những file JAR của JDBC, JMS (Java Message Service, chẳng hạn như Apache Kafka) và những thư viện mà \jmeter{} cần đều được đặt trong thư mục \texttt{lib/} (không phải thư mục \texttt{lib/ext/}).
 
 \par Để bắt đầu sử dụng \jmeter{}, truy cập thư mục \texttt{bin/} (từ Powershell/Command Prompt nếu sử dụng Windows, từ Terminal nếu sử dụng Linux/Mac), sau đó
 \begin{itemize}[itemsep=0pt]
-  \item Chạy file \texttt{jmeter.bat} nếu máy sử dụng Windows.
-  \item Ngược lại, chạy file \texttt{jmeter}.
+    \item Chạy file \texttt{jmeter.bat} nếu máy sử dụng Windows.
+    \item Ngược lại, chạy file \texttt{jmeter}.
 \end{itemize}
 
 \par Sau đó, giao diện đồ họa của \jmeter{} hiện lên như sau:
 
 \FloatBarrier{}
 \begin{figure}[htp]
-  \centering
-  \includegraphics[scale=0.33]{jmeter-gui.png}
-  \caption{Giao diện đồ họa của \jmeter{}}
+    \centering
+    \includegraphics[scale=0.33]{jmeter_gui.png}
+    \caption{Giao diện đồ họa của \jmeter{}}
 \end{figure}
 \FloatBarrier{}
 
 \par Có thể có lỗi khi chạy \jmeter{} trên Linux, như việc không tìm thấy một class, chẳng hạn
 \begin{quotation}
-\texttt{org.GNOME.Accessibility.AtkWrapper}
+    \texttt{org.GNOME.Accessibility.AtkWrapper}
 \end{quotation}
 
 \par Để khắc phục điều này, hãy comment lại các class trong file
 \begin{quotation}
-\texttt{/etc/java-8-openjdk/accessibility.properties}
+    \texttt{/etc/java-8-openjdk/accessibility.properties}
 \end{quotation}
 \par và khởi động \jmeter{} một lần nữa.
 
@@ -194,7 +194,7 @@ printable_docs/
 \FloatBarrier{}
 \begin{figure}[htp]
     \centering
-    \includegraphics[scale=0.3]{thread-group.png}
+    \includegraphics[scale=0.3]{thread_group.png}
     \caption{Các thuộc tính của một thread group}
     {\label{fig:thread-group}}
 \end{figure}
@@ -223,30 +223,30 @@ printable_docs/
 
 \begin{itemize}[itemsep=0pt]
     \item \textbf{HTTP request}
-        \par Sampler này cho phép gửi HTTP/HTTPS request đến server, thiết lập các thuộc tính của một request như method, parameter, body, file (upload) \ldots
-        \par Một HTTP request sampler có thể gửi request đến một SOAP, REST web service. Hơn thế nữa, sampler này còn cho phép gửi GraphQL HTTP request.
+          \par Sampler này cho phép gửi HTTP/HTTPS request đến server, thiết lập các thuộc tính của một request như method, parameter, body, file (upload) \ldots
+          \par Một HTTP request sampler có thể gửi request đến một SOAP, REST web service. Hơn thế nữa, sampler này còn cho phép gửi GraphQL HTTP request.
     \item \textbf{JDBC request}
-        \par JDBC request sampler gửi truy vấn SQL đến một cơ sở dữ liệu. Cần cung cấp Driver class và cấu hình JDBC để sử dụng sampler này.
+          \par JDBC request sampler gửi truy vấn SQL đến một cơ sở dữ liệu. Cần cung cấp Driver class và cấu hình JDBC để sử dụng sampler này.
     \item \textbf{Java object request}
-        \par Sampler này cho phép điều khiển một class được implement interface
+          \par Sampler này cho phép điều khiển một class được implement interface
 
-        \begin{quotation}
-            \texttt{org.apache.jmeter.protocol.java.sampler.JavaSamplerClient}
-        \end{quotation}
+          \begin{quotation}
+              \texttt{org.apache.jmeter.protocol.java.sampler.JavaSamplerClient}
+          \end{quotation}
     \item \textbf{JUnit request}
-        \par Với sampler này, \jmeter{} có thể chạy các JUnit test. Để làm được điều này, ta thực hiện các việc sau:
-        \begin{enumerate}[itemsep=0pt,itemindent=1cm,label = Bước \arabic*.]
-            \item Biên dịch các file chứa các test case thành những file \texttt{*.jar}
-            \item Đặt các file \texttt{*.jar} vừa biên dịch vào thư mục \texttt{\jmeterhome{}/lib/junit/}
-            \item Thêm JUnit request sampler vào test plan. JUnit request sampler sẽ nhận ra các class JUnit test và các method được gắn annotate \texttt{@Test}.
-        \end{enumerate}
-        \par Ở thời điểm viết báo cáo này, \jmeter{} chưa chính thức hỗ trợ Junit 5, mà chỉ đến JUnit 3 và 4.
+          \par Với sampler này, \jmeter{} có thể chạy các JUnit test. Để làm được điều này, ta thực hiện các việc sau:
+          \begin{enumerate}[itemsep=0pt,itemindent=1cm,label = Bước \arabic*.]
+              \item Biên dịch các file chứa các test case thành những file \texttt{*.jar}
+              \item Đặt các file \texttt{*.jar} vừa biên dịch vào thư mục \texttt{\jmeterhome{}/lib/junit/}
+              \item Thêm JUnit request sampler vào test plan. JUnit request sampler sẽ nhận ra các class JUnit test và các method được gắn annotate \texttt{@Test}.
+          \end{enumerate}
+          \par Ở thời điểm viết báo cáo này, \jmeter{} chưa chính thức hỗ trợ Junit 5, mà chỉ đến JUnit 3 và 4.
     \item \textbf{Mail request}
-        \par Mail request có thể được chia làm hai loại: đọc mail và gửi mail.
-        \par Sampler để đọc mail là \textit{Mail Reader Sampler}. Sampler này có thể sử dụng giao thức POP3 (S) hoặc IMAP (S).
-        \par Sampler để gửi mail là \textit{SMTP Sampler}. Sampler này sử dụng giao thức SMTP (S).
+          \par Mail request có thể được chia làm hai loại: đọc mail và gửi mail.
+          \par Sampler để đọc mail là \textit{Mail Reader Sampler}. Sampler này có thể sử dụng giao thức POP3 (S) hoặc IMAP (S).
+          \par Sampler để gửi mail là \textit{SMTP Sampler}. Sampler này sử dụng giao thức SMTP (S).
     \item \textbf{OS process request}
-        \par Sampler này được dùng để thực thi các lệnh trên máy cài \jmeter{}. Sampler này sử dụng được trên cả Windows, Linux và Mac, mặc dù cơ chế phân tích cú pháp lệnh trên shell của các hệ điều hành này khác nhau.
+          \par Sampler này được dùng để thực thi các lệnh trên máy cài \jmeter{}. Sampler này sử dụng được trên cả Windows, Linux và Mac, mặc dù cơ chế phân tích cú pháp lệnh trên shell của các hệ điều hành này khác nhau.
 \end{itemize}
 
 \subsection{Logic controller}
@@ -257,48 +257,120 @@ printable_docs/
 
 \begin{itemize}[itemsep=0pt]
     \item \textbf{Simple controller}
-        \par Chức năng duy nhất của \textbf{Simple controller} lưu lại kết quả chạy của test plan vào một file của thư mục hiện tại (thư mục mà ở đó khởi động \jmeter{}).
+          \par Chức năng duy nhất của \textbf{Simple controller} lưu lại kết quả chạy của test plan vào một file của thư mục hiện tại (thư mục mà ở đó khởi động \jmeter{}).
     \item \textbf{Loop controller}
-        \par Như tên gọi, controller này sẽ lặp lại các request.
-        \par Thuộc tính duy nhất của loop controller là loop count. Thuộc tính này kết hợp với loop count của thread group $-$ tức là khi thực thi test plan, trong test plan này có một loop controller, số request được gửi sẽ là
-        \[
-            \text{number of requests} = \text{loop count of thread group} \times \text{loop count of loop controller}
-        \]
+          \par Như tên gọi, controller này sẽ lặp lại các request.
+          \par Thuộc tính duy nhất của loop controller là loop count. Thuộc tính này kết hợp với loop count của thread group $-$ tức là khi thực thi test plan, trong test plan này có một loop controller, số request được gửi sẽ là
+          \[
+              \text{number of requests} = \text{loop count of thread group} \times \text{loop count of loop controller}
+          \]
     \item \textbf{Once only controller}
-        \par Controller này chỉ cho phép request bên trong nó chạy một lần.
+          \par Controller này chỉ cho phép request bên trong nó chạy một lần.
     \item \textbf{While controller}
-        \par Controller này cần được cung cấp thuộc tính \texttt{Condition} $-$ đây là một giá trị boolean hoặc một biểu thức sẽ trả về giá trị boolean. Giá trị/biểu thức được cung cấp cho \texttt{Condition} có thể sử dụng biến và hàm của \jmeter{}.
-        \par Khi chạy test plan, các thành phần của \textbf{While controller} sẽ chạy đến khi \texttt{Condition} có giá trị \texttt{false}.
-        \par Nếu \texttt{Condition} bị bỏ trống hoặc có giá trị \texttt{LAST}, vòng lặp sẽ dừng lại khi sample cuối cùng trong \texttt{While controller} fail.
+          \par Controller này cần được cung cấp thuộc tính \texttt{Condition} $-$ đây là một giá trị boolean hoặc một biểu thức sẽ trả về giá trị boolean. Giá trị/biểu thức được cung cấp cho \texttt{Condition} có thể sử dụng biến và hàm của \jmeter{}.
+          \par Khi chạy test plan, các thành phần của \textbf{While controller} sẽ chạy đến khi \texttt{Condition} có giá trị \texttt{false}.
+          \par Nếu \texttt{Condition} bị bỏ trống hoặc có giá trị \texttt{LAST}, vòng lặp sẽ dừng lại khi sample cuối cùng trong \texttt{While controller} fail.
     \item \textbf{ForEach controller}
-        \par \textbf{ForEach controller} duyệt qua một tập hợp các biến. Các biến này có cùng \textit{prefix} và được theo sau bởi số thứ tự (bắt đầu từ 1). Ví dụ:
-        \begin{quotation}
-            \texttt{inputVar\_1}, \texttt{inputVar\_2}, \texttt{inputVar\_3}, \texttt{inputVar\_4}
-        \end{quotation}
-        \par Nếu biến có giá trị \texttt{null}, sampler trong \textbf{ForEach Controller} sẽ không chạy.
-        \par Mỗi lần duyệt, các sampler trong \textbf{ForEach controller} chạy thêm một lần.
+          \par \textbf{ForEach controller} duyệt qua một tập hợp các biến. Các biến này có cùng \textit{prefix} và được theo sau bởi số thứ tự (bắt đầu từ 1). Ví dụ:
+          \begin{quotation}
+              \texttt{inputVar\_1}, \texttt{inputVar\_2}, \texttt{inputVar\_3}, \texttt{inputVar\_4}
+          \end{quotation}
+          \par Nếu biến có giá trị \texttt{null}, sampler trong \textbf{ForEach Controller} sẽ không chạy.
+          \par Mỗi lần duyệt, các sampler trong \textbf{ForEach controller} chạy thêm một lần.
     \item \textbf{If controller}
-        \par Controller này cũng có một thuộc tính \texttt{Condition}, tuy nhiên giá trị/biểu thức được cung cấp cho thuộc tính này được tính toán bằng \textbf{JavaScript}.
-        \par Nếu \texttt{Condition} \texttt{true}, các thành phần trong \textbf{If controller} sẽ chạy. Ngược lại, chúng sẽ bị bỏ qua.
+          \par Controller này cũng có một thuộc tính \texttt{Condition}, tuy nhiên giá trị/biểu thức được cung cấp cho thuộc tính này được tính toán bằng \textbf{JavaScript}.
+          \par Nếu \texttt{Condition} \texttt{true}, các thành phần trong \textbf{If controller} sẽ chạy. Ngược lại, chúng sẽ bị bỏ qua.
     \item \textbf{Runtime controller}
-        \par \textbf{Runtime controller} kiểm soát thời gian chạy của các thành phần bên trong nó. Thuộc tính quy định điều này là \texttt{Runtime} (tính bằng giây). Đến khi thời gian đã chạy của các thành phần trong \textbf{Runtime controller} vượt quá giá trị của \texttt{Runtime} (giây), chúng sẽ dừng lại.
+          \par \textbf{Runtime controller} kiểm soát thời gian chạy của các thành phần bên trong nó. Thuộc tính quy định điều này là \texttt{Runtime} (tính bằng giây). Đến khi thời gian đã chạy của các thành phần trong \textbf{Runtime controller} vượt quá giá trị của \texttt{Runtime} (giây), chúng sẽ dừng lại.
     \item \textbf{Interleave controller}
+          \par Trong mỗi lần duyệt (loop iteration), các sampler bên trong \textbf{Interleave controller} sẽ chạy luân phiên với các sampler cùng scope với \textbf{Interleave controller}.
+          \par Cụ thể hơn, hãy theo dõi hình~\ref{fig:interleave-controller}.
+          \FloatBarrier{}
+          \begin{figure}[htp]
+              \centering
+              \includegraphics[scale=0.33]{interleave_controller.png}
+              \caption{Ví dụ về Interleave Controller}
+              {\label{fig:interleave-controller}}
+          \end{figure}
+          \FloatBarrier{}
+          \par Trong hình~\ref{fig:interleave-controller}, \textbf{Interleave controller} chứa 3 samplers là \textit{News Page}, \textit{FAQ Page}, \textit{Gump Page}; cùng scope với \textbf{Interleave controller} là \textit{HTTP Request} và \textit{Log Page}. Thứ tự chạy của các sampler như sau:
+          \begin{itemize}
+              \item \textit{News Page}
+              \item \textit{HTTP Request} và \textit{FAQ Page}
+              \item \textit{FAQ Page}
+              \item \textit{HTTP Request} và \textit{FAQ Page}
+              \item \textit{Gump Page}
+              \item \textit{HTTP Request} và \textit{FAQ Page}
+              \item Lặp lại đến khi số lần lặp bằng giá trị đã cung cấp cho \texttt{loop count} của \textbf{Thread Group}.
+          \end{itemize}
     \item \textbf{Switch controller}
-    \item \textbf{Module controller}
+          \par \textbf{Switch controller} gần giống với \textbf{Interleave controller}. Điểm khác biệt là \textbf{Switch controller} có thể nhận một thuộc tính \texttt{switch value} $-$ đây là index/tên của thành phần trong controller và thay vì chạy tuần tự các thành phần, \textbf{Switch controller} chỉ chạy thành phần khớp với \texttt{switch value}. Theo dõi thứ tự các request trong hình minh họa~\ref{fig:switch-controller}.
+          \begin{figure}[htp]
+              \centering
+              \includegraphics[scale=0.33]{switch_controller.png}
+              \caption{Ví dụ về Switch controller}
+              {\label{fig:switch-controller}}
+          \end{figure}
     \item \textbf{Include controller}
+          \par \textbf{Include controller} được tạo ra để \textbf{test plan} có thể sử dụng file \texttt{*.jmx} khác.
 \end{itemize}
 
 \section{Listener}
 
+\par Nhiệm vụ của hầu hết các \textbf{Listener} trong một \textbf{test plan} là \textit{chờ} và \textit{lắng nghe} kết quả test. Như vậy, \textbf{Listener} sẽ thực hiện nhiệm vụ của mình sau khi các đối tượng cùng scope với nó đã chạy xong.
+
+\par \textbf{Listener} thường được sử dụng cho các mục đích sau:
+
+\begin{itemize}
+    \item Xem request và response của các sampler (View Results Tree)
+    \item Ghi lại kết quả ra một file (Simple Data Writer)
+    \item Lưu response vào một file (Save Responses to a file)
+    \item Hiển thị kết quả dạng bảng (View Results in Table)
+    \item Tạo báo cáo dưới dạng bảng (Aggregate Report, Summary Report)
+    \item Hiển thị kết quả, báo cáo dưới dạng biểu đồ (Aggregate Graph, Response Time Graph)
+\end{itemize}
+
 \section{Assertion}
+
+\par \textbf{Assertion} là một trong những tính năng mà các công cụ kiểm thử mang lại, trong đó có cả \jmeter{}. \textbf{Assertion} được sử dụng để kiểm tra các samplers. Tuy nhiên, nếu trong một scope có một \textbf{Assertion} thì \textbf{Assertion} này sẽ thực hiện kiểm tra cho tất cả các samplers trong scope đó. Để \textbf{Assertion} chỉ kiểm tra cho một sampler cụ thể, cần phải đặt \textbf{Assertion} vào làm thành phần con của sampler đó.
+
+\par \jmeter{} cung cấp nhiều loại \textbf{Assertion} khác nhau. Dưới đây là một số \textbf{Assertion} tiêu biểu.
+
+\begin{itemize}
+    \item \textbf{Response Assertion}: Kiểm tra response của một sampler. Có 4 kiểu kiểm tra: \texttt{Contains} và \texttt{Matches} sử dụng regex, \texttt{Equals} và \texttt{Substring} sử dụng plain text.
+    \item \textbf{Duration Assertion}: Kiểm tra response có được trả về trong một thời lượng cho trước không (đo bằng millisecond).
+    \item \textbf{Size Assertion}: Kiểm tra kích thước của response (có đủ 6 toán tử so sánh để lựa chọn)
+    \item \textbf{XML Assertion}: Kiểm tra response có phải một tài liệu XML không (tuy nhiên không thể kiểm tra tài liệu XML đó có hợp lệ dựa trên DTD hay schema nào không).
+    \item \textbf{BeanShell Assertion}: Cho phép thực hiện kiểm tra bằng BeanShell script (khác với các \textbf{Assertion} khác chỉ cần khai báo).
+    \item \textbf{MD5Hex Assertion}: Kiểm tra MD5 hash của response.
+    \item \textbf{HTML Assertion}: Kiểm tra cú pháp HTML của response.
+    \item \textbf{XPath, XPath2 Assertion}: Kiểm tra thành phần một tài liệu XML bằng truy vấn XPath.
+    \item \textbf{XML Schema Assertion}: Kiểm tra một tài liệu XML có hợp lệ đối với một XML schema hay không.
+    \item \textbf{JSON Assertion}: Kiểm tra tài liệu JSON có hợp lệ không và kiểm tra JSON path.
+\end{itemize}
 
 \section{Timer}
 
+\par Trong cùng một scope, \textbf{Timer} là thành phần chạy đầu tiên. \textbf{Timer} phải đi cùng với một sampler (cùng scope hoặc nằm trong sampler đó).
+
+\par \textbf{Timer} pause thread trong một khoảng thời gian (do người dùng đưa ra) giữa các requests.
+
 \section{Các thành phần khác}
 
-\subsection{Cấu hình}
 \subsection{Tiền xử lý}
+
+\par Thành phần tiền xử lý được sử dụng để sửa đổi sampler trong một scope. Dưới đây là một số thành phần tiền xử lý tiêu biểu
+
+\begin{itemize}
+    \item \textbf{HTML Link Parser}: Sau khi một sampler nhận được response data (ở dạng HTML), thành phần này sẽ phân tích tài liệu HTML đó và trích xuất ra các siêu liên kết và form. Sampler liền sau có thể sử dụng lại những giá trị được trích xuất này.
+    \item \textbf{User Parameters}
+    \item \textbf{RegEx User Parameters}
+    \item \textbf{Sample Timeout}
+\end{itemize}
+
 \subsection{Hậu xử lý}
+
+\par Thành phần hậu xử lý được thực thi sau các samplers, nhưng chạy trước các \textbf{Assertion}.
 
 \section{Cách hoạt động}
 

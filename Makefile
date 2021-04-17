@@ -83,8 +83,8 @@ updatecls: cleanaux
 	@latexindent $(LATEXINDENT_OPTIONS) $<
 
 serve:
-	@if [ ! -z $(which serve) ]; then \
+	@if [ ! -z $(command -v serve) ]; then \
 		echo "serve could not be found. Run 'npm i -g serve'"; \
 	else \
-		serve sign-in && xdg-open http://localhost:5000; \
+		serve sign-in; \
 	fi

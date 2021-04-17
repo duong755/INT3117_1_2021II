@@ -59,116 +59,116 @@ signInForm.addEventListener('submit', function (submitEvent) {
 \section{Đồ thị phủ cấp 2}
 
 \begin{tikzpicture}[
-		level distance=1cm,
-		sibling distance=4em,
-    level 10/.style={level distance=1cm},
-    level 11/.style={level distance=1.2cm},
-    level 12/.style={level distance=1.2cm},
-    level 14/.style={level distance=1cm},
-    level 15/.style={level distance=1.2cm},
-    level 16/.style={level distance=1cm},
-    level 19/.style={level distance=1.1cm},
-    level 20/.style={level distance=1.1cm}
-	]
-  \tikzset{>=latex}
-  \tikzset{edge from parent/.style={draw,-latex}}
-  \tikzset{step node/.style = {
-		shape=circle,
-    rounded corners,
-    draw,
-    align=center,
-    top color=white,
-    bottom color=blue!20
-  }}
-  \tikzset{entry node/.style={
-    shape=circle,
-    fill=black
-  }}
-  \tikzset{terminal node/.style={
-    shape=circle,
-    fill=black,
-    draw=black,
-    double,
-    line width=0.5mm
-  }}
-  \node [entry node, line width=1mm,double] {0}
-  child {
-    node [label={[label distance=1cm]east:Dòng 3},step node] {1}
-      child {
-        node [label={[label distance=1cm]east:Dòng 4}, step node] {2}
-        child {
-          node [label={[label distance=1cm]east:Dòng 5}, step node] {3}
-          child {
-            node [label={[label distance=1cm]east:Dòng 6}, step node] {4}
+        level distance=1cm,
+        sibling distance=4em,
+        level 10/.style={level distance=1cm},
+        level 11/.style={level distance=1.2cm},
+        level 12/.style={level distance=1.2cm},
+        level 14/.style={level distance=1cm},
+        level 15/.style={level distance=1.2cm},
+        level 16/.style={level distance=1cm},
+        level 19/.style={level distance=1.1cm},
+        level 20/.style={level distance=1.1cm}
+    ]
+    \tikzset{>=latex}
+    \tikzset{edge from parent/.style={draw,-latex}}
+    \tikzset{step node/.style = {
+                shape=circle,
+                rounded corners,
+                draw,
+                align=center,
+                top color=white,
+                bottom color=blue!20
+            }}
+    \tikzset{entry node/.style={
+                shape=circle,
+                fill=black
+            }}
+    \tikzset{terminal node/.style={
+                shape=circle,
+                fill=black,
+                draw=black,
+                double,
+                line width=0.5mm
+            }}
+    \node [entry node, line width=1mm,double] {0}
+    child {
+            node [label={[label distance=1cm]east:Dòng 3},step node] {1}
             child {
-              node [label={[label distance=1cm]east:Dòng 7}, step node] {5}
-              child {
-                node [label={[label distance=1cm]east:Dòng 9}, step node] {6}
-                child {
-                  node [label={[label distance=1cm]east:Dòng 10}, step node] {7}
-                  child {
-                    node [label={[label distance=1cm]east:Dòng 11}, step node] {8}
+                    node [label={[label distance=1cm]east:Dòng 4}, step node] {2}
                     child {
-                      node [label={[label distance=1cm]east:Dòng 12}, step node] {9}
-                      child {
-                        node [label={[label distance=1cm]east:Dòng 14}, step node] {10}
-                        child {
-                          node [label={[label distance=1cm]west:Dòng 15}, step node] (line15) {11} edge from parent node[left] {true}
-                        }
-                        child {
-                          node [label={[label distance=1cm]east:Dòng 16}, step node] {12}
-                          child {
-                            node [label={[label distance=1cm]west:Dòng 17}, step node] (line17) {13} edge from parent node[left] {true}
-                          }
-                          child {
-                            node [label={[label distance=1cm]east:Dòng 18}, step node] {14}
+                            node [label={[label distance=1cm]east:Dòng 5}, step node] {3}
                             child {
-                              node [label={[label distance=1cm]west:Dòng 19}, step node] (line19) {15} edge from parent node[left] {true}
-                            }
-                            child {
-                              node [label={[label distance=1cm]east:Dòng 21}, step node] {16}
-                              child {
-                                node [label={[label distance=1cm]east:Dòng 24}, step node] (line24) {17}
-                                child {
-                                  node [label={[label distance=1cm]west:Dòng 25}, step node] (line25) {18} edge from parent node[left] {true}
-                                }
-                                child {
-                                  node [label={[label distance=1cm]east:Dòng 27}, step node] {19}
-                                  child {
-                                    node [label={[label distance=1cm]east:Dòng 30}, step node] (line30) {20}
+                                    node [label={[label distance=1cm]east:Dòng 6}, step node] {4}
                                     child {
-                                      node [label={[label distance=1cm]east:Dòng 31}, step node] {21}
-                                      child {
-                                        node [label={[label distance=1cm]east:Dòng 32}, step node] (line32) {22}
-                                        child {
-                                          node [label={[label distance=1cm]east:Dòng 33}, step node] {23}
-                                          child {
-                                            node [terminal node] (terminal) {24}
-                                          }
-                                          edge from parent node[left] {true}
+                                            node [label={[label distance=1cm]east:Dòng 7}, step node] {5}
+                                            child {
+                                                    node [label={[label distance=1cm]east:Dòng 9}, step node] {6}
+                                                    child {
+                                                            node [label={[label distance=1cm]east:Dòng 10}, step node] {7}
+                                                            child {
+                                                                    node [label={[label distance=1cm]east:Dòng 11}, step node] {8}
+                                                                    child {
+                                                                            node [label={[label distance=1cm]east:Dòng 12}, step node] {9}
+                                                                            child {
+                                                                                    node [label={[label distance=1cm]east:Dòng 14}, step node] {10}
+                                                                                    child {
+                                                                                            node [label={[label distance=1cm]west:Dòng 15}, step node] (line15) {11} edge from parent node[left] {true}
+                                                                                        }
+                                                                                    child {
+                                                                                            node [label={[label distance=1cm]east:Dòng 16}, step node] {12}
+                                                                                            child {
+                                                                                                    node [label={[label distance=1cm]west:Dòng 17}, step node] (line17) {13} edge from parent node[left] {true}
+                                                                                                }
+                                                                                            child {
+                                                                                                    node [label={[label distance=1cm]east:Dòng 18}, step node] {14}
+                                                                                                    child {
+                                                                                                            node [label={[label distance=1cm]west:Dòng 19}, step node] (line19) {15} edge from parent node[left] {true}
+                                                                                                        }
+                                                                                                    child {
+                                                                                                            node [label={[label distance=1cm]east:Dòng 21}, step node] {16}
+                                                                                                            child {
+                                                                                                                    node [label={[label distance=1cm]east:Dòng 24}, step node] (line24) {17}
+                                                                                                                    child {
+                                                                                                                            node [label={[label distance=1cm]west:Dòng 25}, step node] (line25) {18} edge from parent node[left] {true}
+                                                                                                                        }
+                                                                                                                    child {
+                                                                                                                            node [label={[label distance=1cm]east:Dòng 27}, step node] {19}
+                                                                                                                            child {
+                                                                                                                                    node [label={[label distance=1cm]east:Dòng 30}, step node] (line30) {20}
+                                                                                                                                    child {
+                                                                                                                                            node [label={[label distance=1cm]east:Dòng 31}, step node] {21}
+                                                                                                                                            child {
+                                                                                                                                                    node [label={[label distance=1cm]east:Dòng 32}, step node] (line32) {22}
+                                                                                                                                                    child {
+                                                                                                                                                            node [label={[label distance=1cm]east:Dòng 33}, step node] {23}
+                                                                                                                                                            child {
+                                                                                                                                                                    node [terminal node] (terminal) {24}
+                                                                                                                                                                }
+                                                                                                                                                            edge from parent node[left] {true}
+                                                                                                                                                        }
+                                                                                                                                                }
+                                                                                                                                        }
+                                                                                                                                }
+                                                                                                                            edge from parent node[right] {false}
+                                                                                                                        }
+                                                                                                                }
+                                                                                                            edge from parent node[right] {false}
+                                                                                                        }
+                                                                                                    edge from parent node[right] {false}
+                                                                                                }
+                                                                                            edge from parent node[right] {false}
+                                                                                        }
+                                                                                }
+                                                                        }
+                                                                }
+                                                        }
+                                                }
                                         }
-                                      }
-                                    }
-                                  }
-                                  edge from parent node[right] {false}
                                 }
-                              }
-                              edge from parent node[right] {false}
-                            }
-                            edge from parent node[right] {false}
-                          }
-                          edge from parent node[right] {false}
                         }
-                      }
-                    }
-                  }
                 }
-              }
-            }
-          }
-        }
-      }
-		};
+        };
     \draw[->] (line15) to[out=-90,in=180] (line24);
     \draw[->] (line17) to[out=-90,in=180] (line24);
     \draw[->] (line19) to[out=-70,in=180] (line24);
