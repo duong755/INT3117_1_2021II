@@ -3,9 +3,9 @@ var signInForm = document.forms[0];
 signInForm.addEventListener('submit', function (submitEvent) {
   submitEvent.preventDefault();
   var email = document.querySelector('.text-field.email input').value;
-  var emailErrorMessageContainer = document.querySelector('.text-field.email .error-message');
+  var emailErrorContainer = document.querySelector('.text-field.email .error-message');
   var password = document.querySelector('.text-field.password input').value;
-  var passwordErrorMessageContainer = document.querySelector('.text-field.password .error-message');
+  var passwordErrorContainer = document.querySelector('.text-field.password .error-message');
   var emailError = '';
   var passwordError = '';
   if (email.trim() === '') {
@@ -22,8 +22,8 @@ signInForm.addEventListener('submit', function (submitEvent) {
   } else {
     passwordError = '';
   }
-  emailErrorMessageContainer.innerHTML = emailError;
-  passwordErrorMessageContainer.innerHTML = passwordError;
+  emailErrorContainer.innerHTML = emailError;
+  passwordErrorContainer.innerHTML = passwordError;
   if (emailError === '' && passwordError === '') {
     this.submit();
   }

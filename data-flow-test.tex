@@ -30,13 +30,14 @@
 \href{https://github.com/duong755/INT3117_1_2021II}{GitHub Repo}
 
 \begin{minted}[linenos,frame=single,framesep=10pt,breaklines]{js}
+var EMAIL_REGEX = /(emailregex)/; // too long to write down here
 var signInForm = document.forms[0];
 signInForm.addEventListener('submit', function (submitEvent) {
   submitEvent.preventDefault();
   var email = document.querySelector('.text-field.email input').value;
-  var emailErrorMessageContainer = document.querySelector('.text-field.email .error-message');
+  var emailErrorContainer = document.querySelector('.text-field.email .error-message');
   var password = document.querySelector('.text-field.password input').value;
-  var passwordErrorMessageContainer = document.querySelector('.text-field.password .error-message');
+  var passwordErrorContainer = document.querySelector('.text-field.password .error-message');
   var emailError = '';
   var passwordError = '';
   if (email.trim() === '') {
@@ -53,8 +54,8 @@ signInForm.addEventListener('submit', function (submitEvent) {
   } else {
     passwordError = '';
   }
-  emailErrorMessageContainer.innerHTML = emailError;
-  passwordErrorMessageContainer.innerHTML = passwordError;
+  emailErrorContainer.innerHTML = emailError;
+  passwordErrorContainer.innerHTML = passwordError;
   if (emailError === '' && passwordError === '') {
     this.submit();
   }
@@ -69,9 +70,26 @@ signInForm.addEventListener('submit', function (submitEvent) {
     \centering
     % chktex-file 44
     \begin{tabular}{l|c|c|c}
-        \texttt{Variable}                      & def                      & p-use            & c-use         \\
+        \texttt{Variable}               & def & p-use & c-use \\
         \toprule
         \bottomrule
+        \texttt{EMAIL\_REGEX}           &     &       &       \\
+        \hline
+        \texttt{signInForm}             &     &       &       \\
+        \hline
+        \texttt{submitEvent}            &     &       &       \\
+        \hline
+        \texttt{email}                  &     &       &       \\
+        \hline
+        \texttt{emailErrorContainer}    &     &       &       \\
+        \hline
+        \texttt{emailError}             &     &       &       \\
+        \hline
+        \texttt{password}               &     &       &       \\
+        \hline
+        \texttt{passwordErrorContainer} &     &       &       \\
+        \hline
+        \texttt{passwordError}          &     &       &       \\
     \end{tabular}
     \caption{Bảng các biến và các dòng sử dụng chúng}
 \end{table}
@@ -92,28 +110,26 @@ signInForm.addEventListener('submit', function (submitEvent) {
 
 \section{Kiểm thử}
 
-\subsection*{Path}
-
 \par Dựa vào đồ thị luồng dữ liệu, ta xác định được 16 đường đi có thể có như sau:
 \bigskip
 
 \begin{enumerate}[label = (Path \arabic*),itemindent=1cm]
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
+    \item
 \end{enumerate}
 
 \subsection*{def-clear path}
@@ -122,11 +138,62 @@ signInForm.addEventListener('submit', function (submitEvent) {
     \centering
     % chktex-file 44
     \begin{tabular}{l|c|c}
-        \texttt{Variable}                      & \texttt{def-clear path}                          & \texttt{path}                  \\
+        \texttt{Variable}               & \texttt{def-clear path} & \texttt{path} \\
         \toprule
         \bottomrule
+        \texttt{EMAIL\_REGEX}           &                         &               \\
+        \hline
+        \texttt{signInForm}             &                         &               \\
+        \hline
+        \texttt{submitEvent}            &                         &               \\
+        \hline
+        \texttt{email}                  &                         &               \\
+        \hline
+        \texttt{emailErrorContainer}    &                         &               \\
+        \hline
+        \texttt{emailError}             &                         &               \\
+        \hline
+        \texttt{password}               &                         &               \\
+        \hline
+        \texttt{passwordErrorContainer} &                         &               \\
+        \hline
+        \texttt{passwordError}          &                         &               \\
     \end{tabular}
+    \caption{def-clear path}
 \end{table}
 
+\subsection*{du-pair}
+
+\begin{table}[htp]
+    \centering
+    % chktex-file 44
+    \begin{tabular}{l|c|c}
+        \texttt{Variable}               & \texttt{du-pair} & \texttt{path} \\
+        \toprule
+        \bottomrule
+        \texttt{EMAIL\_REGEX}           &                  &               \\
+        \hline
+        \texttt{signInForm}             &                  &               \\
+        \hline
+        \texttt{submitEvent}            &                  &               \\
+        \hline
+        \texttt{email}                  &                  &               \\
+        \hline
+        \texttt{emailErrorContainer}    &                  &               \\
+        \hline
+        \texttt{emailError}             &                  &               \\
+        \hline
+        \texttt{password}               &                  &               \\
+        \hline
+        \texttt{passwordErrorContainer} &                  &               \\
+        \hline
+        \texttt{passwordError}          &                  &               \\
+    \end{tabular}
+    \caption{du-pair}
+\end{table}
+
+\subsection{All-c-uses coverage}
+
+\subsection{All-p-uses coverage}
 
 \end{document}
