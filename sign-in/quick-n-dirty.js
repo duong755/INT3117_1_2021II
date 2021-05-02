@@ -2,16 +2,12 @@ var EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(
 var signInForm = document.forms[0];
 signInForm.addEventListener('submit', function (submitEvent) {
   submitEvent.preventDefault();
-  var emailInput = document.querySelector('.text-field.email input');
+  var email = document.querySelector('.text-field.email input').value;
   var emailErrorMessageContainer = document.querySelector('.text-field.email .error-message');
-  var passwordInput = document.querySelector('.text-field.password input');
+  var password = document.querySelector('.text-field.password input').value;
   var passwordErrorMessageContainer = document.querySelector('.text-field.password .error-message');
-
-  var email = emailInput.value;
-  var password = passwordInput.value;
   var emailError = '';
   var passwordError = '';
-
   if (email.trim() === '') {
     emailError = 'Không được để trống email';
   } else if (!EMAIL_REGEX.test(email)) {
@@ -21,13 +17,11 @@ signInForm.addEventListener('submit', function (submitEvent) {
   } else {
     emailError = '';
   }
-
   if (password.trim() === '') {
     passwordError = 'Không được để trống mật khẩu';
   } else {
     passwordError = '';
   }
-
   emailErrorMessageContainer.innerHTML = emailError;
   passwordErrorMessageContainer.innerHTML = passwordError;
   if (emailError === '' && passwordError === '') {
